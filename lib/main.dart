@@ -2,15 +2,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,13 +16,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const MyHomePage(title: 'AMC Controle de Ganhos'),
+      home: MyHomePage(title: 'AMC - Controle de Ganhos'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -40,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _initializeCamera(); // Corrigido para chamar a função que existe
+    _initializeCamera();
   }
 
   Future<void> _initializeCamera() async {
@@ -56,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _cameraController = CameraController(
           frontCamera,
           ResolutionPreset.high,
+          // enableAudio: false, // Descomente se não precisar de áudio
           enableAudio: true,
         );
         await _cameraController!.initialize();
@@ -133,7 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Center(
                 child:
                     _cameraController != null &&
-                        _cameraController!.value.isInitialized
+                        _cameraController!.value.isInitialized &&
+                        _cameraController!.value.isStreamingImages
                     ? _isPreviewVisible
                           ? ClipRect(
                               child: Transform.scale(
