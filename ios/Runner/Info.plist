@@ -51,5 +51,17 @@
 	<string>Este aplicativo precisa de acesso ao microfone para gravar áudio com o vídeo.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Este aplicativo precisa de permissão para salvar vídeos na sua galeria.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Este aplicativo precisa de permissão para acessar a galeria.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Este aplicativo precisa de acesso à sua localização para registrar no diário de bordo.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Este aplicativo precisa de acesso à sua localização para registrar no diário de bordo.</string>
+	<!-- Adicionado para permitir abrir URLs -->
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https</string>
+		<string>http</string>
+	</array>
 </dict>
 </plist>
